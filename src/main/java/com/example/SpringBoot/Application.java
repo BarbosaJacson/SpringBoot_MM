@@ -34,7 +34,7 @@ public class Application {
 
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-			System.out.println("--- Ferramenta de Cotações de Ativos ---");
+			System.out.println("--- Stock quote tools ---");
 
 			System.out.print("Enter with a symbol (ex: IBM, AAPL, PETR4.SA): ");
 			String symbol = scanner.nextLine().trim().toUpperCase();
