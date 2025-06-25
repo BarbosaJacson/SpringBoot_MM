@@ -1,5 +1,4 @@
-package com.example.SpringBoot.model; // Ajuste o pacote se necessário
-
+package com.example.SpringBoot.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +11,10 @@ public class AssetQuote {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String symbol;
+    private Long id;
+
+    @Column(name = "ticker")
+    private String ticker;
 
     @Column(name = "quote_date", unique = true)
     private LocalDate date;
@@ -31,8 +33,8 @@ public class AssetQuote {
 
        public AssetQuote() {}
 
-    public AssetQuote(String symbol, LocalDate date, Double open, Double highest, Double lowest, Double closing) {
-        this.symbol = symbol;
+    public AssetQuote(String ticker, LocalDate date, Double open, Double highest, Double lowest, Double closing) {
+        this.ticker = ticker;
         this.date = date;
         this.open = open;
         this.highest = highest;
@@ -40,12 +42,20 @@ public class AssetQuote {
         this.closing = closing;
     }
 
-    public String getSymbol() {
-        return symbol;
+    public Long getId() {
+        return id;
     }
 
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTicker() {
+        return ticker;
+    }
+
+    public void setTicker(String ticker) {
+        this.ticker = ticker;
     }
 
     public LocalDate getDate() {

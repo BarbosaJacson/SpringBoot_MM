@@ -66,7 +66,7 @@ public class AssetApiService {
 
                     if (!quoteDate.isBefore(fromDate) && !quoteDate.isAfter(toDate)) {
                         AssetQuote assetQuote = new AssetQuote();
-                        assetQuote.setSymbol(symbol);
+                        assetQuote.setTicker(symbol);
                         assetQuote.setDate(quoteDate);
 
                         assetQuote.setOpen(values.get("1. open").asDouble());

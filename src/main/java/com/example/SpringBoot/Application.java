@@ -1,5 +1,6 @@
 package com.example.SpringBoot;
 import com.example.SpringBoot.service.AssetApiService; // IMPORTAR AssetApiService
+import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,8 +17,22 @@ import java.util.Scanner;
 public class Application {
 
 	public static void main(String[] args) {
+
+		try {
+			Dotenv dotenv = Dotenv.load();
+			dotenv.entries().forEach(entry -> {
+				System.setProperty(entry.getKey(), entry.getValue());
+				System.out.println("DEBUG: Loading property of .env -> " +
+						entry.getKey() + "=" + entry.getValue());
+			});
+		} catch (io.github.cdimascio.dotenv.DotenvException e) {
+			System.err.println("ERROR: Could not read file from .env.");
+			e.printStackTrace();
+		}
+
 		SpringApplication.run(Application.class, args);
 	}
+
 
 	@Bean
 	public RestTemplate restTemplate() {
@@ -28,6 +43,7 @@ public class Application {
 	public CommandLineRunner run(AssetApiService assetApiService) {
 		return args -> {
 
+			SpringApplication.run(SpringBootApplication.class, args);
 			Scanner scanner = new Scanner(System.in);
 			LocalDate startDate = null;
 			LocalDate endDate = null;
